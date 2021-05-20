@@ -51,3 +51,8 @@
     <%= submit "Change password" %>
   </div>
 <% end %>
+
+<footer>
+  <hr>
+    <h1 class="rainbow-text"> AlphaNapster </h1>
+</footer>

@@ -24,6 +24,9 @@ module.exports = (env, options) => {
       path: path.resolve(__dirname, '../priv/static/js'),
       publicPath: '/js/'
     },
+    watchOptions: {
+      poll: true
+    },
     devtool: devMode ? 'eval-cheap-module-source-map' : undefined,
     module: {
       rules: [
@@ -41,6 +44,15 @@ module.exports = (env, options) => {
             'css-loader',
             'sass-loader',
           ],
+        },
+        {
+          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: { name: '[name].[ext]', outputPath: '../fonts' }
+            },
+          ],
         }
       ]
     },
@@ -48,6 +60,6 @@ module.exports = (env, options) => {
       new MiniCssExtractPlugin({ filename: '../css/app.css' }),
       new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
     ]
-    .concat(devMode ? [new HardSourceWebpackPlugin()] : [])
+      .concat(devMode ? [new HardSourceWebpackPlugin()] : [])
   }
 };

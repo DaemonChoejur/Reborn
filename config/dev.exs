@@ -1,11 +1,16 @@
 use Mix.Config
 
+database_url = System.get_env("DATABASE_URL")
+
 # Configure your database
 config :reborn, Reborn.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "reborn_dev",
-  hostname: "localhost",
+  # username: "postgres",
+  # password: "postgres",
+  # database: "reborn_dev",
+  # hostname: "localhost",
+
+  # Database url from env var.
+  url: String.replace(database_url, "?", "dev"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -74,3 +79,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# import for Mailgun - dev environment
+import_config "dev.secret.exs"
