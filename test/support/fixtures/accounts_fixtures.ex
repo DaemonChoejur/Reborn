@@ -25,7 +25,12 @@ defmodule Reborn.AccountsFixtures do
 
   def extract_user_token(fun) do
     {:ok, captured} = fun.(&"[TOKEN]#{&1}[TOKEN]")
-    [_, token, _] = String.split(captured.body, "[TOKEN]")
+
+    # default code
+    # [_, token, _] = String.split(captured.body, "[TOKEN]")
+    # Running tests will result in error with invalid token if unchanged
+    # update captured.body to captured.text_body as we have changes in reborn/accounts/user_notifier.ex
+    [_, token, _] = String.split(captured.text_body, "[TOKEN]")
     token
   end
 end

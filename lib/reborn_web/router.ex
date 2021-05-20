@@ -16,11 +16,11 @@ defmodule RebornWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", RebornWeb do
-    pipe_through :browser
+  # scope "/", RebornWeb do
+  #   pipe_through :browser
 
-    get "/", PageController, :index
-  end
+  #   get "/", PageController, :index
+  # end
 
   # Other scopes may use custom stacks.
   # scope "/api", RebornWeb do
@@ -38,9 +38,15 @@ defmodule RebornWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through :browser
+      pipe_through [:browser, :require_authenticated_user]
       live_dashboard "/dashboard", metrics: RebornWeb.Telemetry
     end
+  end
+
+  # Adding route to view sent emails in development
+  if Mix.env() == :dev do
+    # If using Phoenix
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
   end
 
   ## Authentication routes
@@ -60,6 +66,8 @@ defmodule RebornWeb.Router do
 
   scope "/", RebornWeb do
     pipe_through [:browser, :require_authenticated_user]
+
+    get "/", PageController, :index
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
