@@ -4,13 +4,12 @@ database_url = System.get_env("DATABASE_URL")
 
 # Configure your database
 config :reborn, Reborn.Repo,
-  # username: "postgres",
-  # password: "postgres",
-  # database: "reborn_dev",
-  # hostname: "localhost",
-
+  username: "postgres",
+  password: "postgres",
+  database: "reborn_dev",
+  hostname: "localhost",
   # Database url from env var.
-  url: String.replace(database_url, "?", "dev"),
+  # url: String.replace("#{database_url}", "?", "dev"),
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

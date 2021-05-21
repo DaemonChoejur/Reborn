@@ -53,11 +53,3 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs which loads secrets
 # and configuration from environment variables.
 import_config "prod.secret.exs"
-
-# Mailgun config to use environment vars for prod.
-config :reborn, Reborn.Mailer,
-  adapter: Bamboo.MailgunAdapter,
-  # domain: {:system, "MAILGUN_DOMAIN"},
-  # api_key: {:system, "MAILGUN_API_KEY"}
-  domain: System.get_env("DOMAIN")
-  api_key: System.get_env("API_KEY")
