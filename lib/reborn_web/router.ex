@@ -34,14 +34,14 @@ defmodule RebornWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  # if Mix.env() in [:dev, :test] do
+  #   import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through [:browser, :require_authenticated_user]
-      live_dashboard "/dashboard", metrics: RebornWeb.Telemetry
-    end
-  end
+  #   scope "/" do
+  #     pipe_through [:browser, :require_authenticated_user]
+  #     live_dashboard "/dashboard", metrics: RebornWeb.Telemetry
+  #   end
+  # end
 
   # Adding route to view sent emails in development
   if Mix.env() == :dev do
@@ -66,12 +66,14 @@ defmodule RebornWeb.Router do
 
   scope "/", RebornWeb do
     pipe_through [:browser, :require_authenticated_user]
-
-    get "/", PageController, :index
+    get "/welcome", PageController, :index
 
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    import Phoenix.LiveDashboard.Router
+    live_dashboard "/", metrics: RebornWeb.Telemetry
   end
 
   scope "/", RebornWeb do
