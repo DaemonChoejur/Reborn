@@ -52,3 +52,5 @@ npm-debug.log
 
 erl_crash.dump
 phoenix-*.ez
+config/dev.secret.exs
+config/prod.secret.exs
