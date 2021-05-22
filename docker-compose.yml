@@ -8,6 +8,8 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
     image: "postgres:13-alpine"
     restart: always
+    env_file:
+      - .env
     volumes:
       - "pgdata:/var/lib/postgresql/data"
   web:
@@ -15,13 +17,26 @@ services:
     depends_on:
       - db
     environment:
-      MIX_ENV: dev
+      ENV: env
     env_file:
       - .env
     ports:
       - "4000:4000"
     volumes:
-      - .:/app
+      # Files that I want to see changes to without rebuilding the container
+      # This is optional, but a useful feature I've had on other projects
+      - ./assets/css:/app/assets/css
+      - ./assets/js:/app/assets/js
+      - ./assets/static:/app/assets/static
+      - ./assets/.babelrc:/app/assets/.babelrc
+      - ./assets/package.json:/app/assets/package.json
+      - ./assets/webpack.config.js:/app/assets/webpack.config.js
+      - ./config:/app/config
+      - ./lib:/app/lib
+      - ./priv:/app/priv
+      - ./mix.exs:/app/mix.exs
+      - ./mix.lock:/app/mix.lock
+      - ./test:/app/test
 
 volumes:
   pgdata:
