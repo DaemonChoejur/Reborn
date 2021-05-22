@@ -1,4 +1,5 @@
-# add postgres
+# add postgres addon to heroku
+# database url is automatically addign to env var by heroku
 setup:
   addons:
     - plan: heroku-postgresql
@@ -12,4 +13,4 @@ build:
     DATABASE_URL: $DATABASE_URL
     # domain and apikey for mailgun
     DOMAIN: $DOMAIN
-    API_KEY: $APIKEY
+    API_KEY: $API_KEY

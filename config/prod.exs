@@ -11,6 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :reborn, RebornWeb.Endpoint,
   # url: [host: "example.com", port: 80],
+  # updated the url for heroku
   http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "reborn-alphanapster.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
