@@ -43,7 +43,7 @@ defmodule RebornWeb.Router do
   #   end
   # end
 
-  # Adding route to view sent emails in development
+  # Adding route to view sent emails in development by Bamboo
   if Mix.env() == :dev do
     # If using Phoenix
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
@@ -65,6 +65,7 @@ defmodule RebornWeb.Router do
   end
 
   scope "/", RebornWeb do
+    # require users to be authenticated to access the routes below
     pipe_through [:browser, :require_authenticated_user]
     get "/welcome", PageController, :index
 
@@ -72,6 +73,7 @@ defmodule RebornWeb.Router do
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
+    # add dashboard bethind authnetication
     import Phoenix.LiveDashboard.Router
     live_dashboard "/", metrics: RebornWeb.Telemetry
   end
