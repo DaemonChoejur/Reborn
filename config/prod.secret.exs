@@ -36,17 +36,17 @@ secret_key_base =
     """
 
 config :reborn, RebornWeb.Endpoint,
-  # url: [
-  #   host: "reborn-alphanapster.herokuapp.com",
-  #   port: String.to_integer(System.fetch_env!("PORT"))
-  # ],
-  # check_origin: ["//reborn-alphanapster.herokuapp.com"],
+  url: [
+    host: "reborn-alphanapster.herokuapp.com",
+    port: String.to_integer(System.fetch_env!("PORT"))
+  ],
+  check_origin: ["//reborn-alphanapster.herokuapp.com"],
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: []]
   ],
-  # server: true,
-  # code_reloader: false,
+  server: true,
+  code_reloader: false,
   secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
