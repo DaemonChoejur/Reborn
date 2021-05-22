@@ -6,11 +6,14 @@ Features:
 
 1. User Authentication using phx.gen.auth: https://hexdocs.pm/phx_gen_auth/overview.html
 2. Using Bamboo for sending emails [Password-Reset Email, Email Confirmation]
-
    - Email local development and testing https://hexdocs.pm/bamboo/Bamboo.SentEmailViewerPlug.html
+3. LiveView Dashboard
+   - Metrics include a count to check how many times LiveView Dashboard page has been hit.
 
-Run:
-docker-compose build
+# Run:
+
+docker-compose up --build
+docker-compose run web mix ecto.create
 
    <!-- 
    To start your Phoenix server:

@@ -7,7 +7,8 @@ config :reborn, Reborn.Repo,
   username: "postgres",
   password: "postgres",
   database: "reborn_dev",
-  hostname: "localhost",
+  hostname: "db"
+  # hostname: "localhost",
   # Database url from env var.
   # url: String.replace("#{database_url}", "?", "dev"),
   show_sensitive_data_on_connection_error: true,

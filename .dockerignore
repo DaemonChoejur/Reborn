@@ -9,3 +9,9 @@ README.md
 
 .elixir_ls
 
+.git/
+.gitignore
+Dockerfile
+README*
+priv/static/
+
