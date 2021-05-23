@@ -12,8 +12,9 @@ RUN mix do deps.get, deps.compile
 
 COPY assets/package.json assets/package-lock.json ./assets/
 RUN npm install --prefix ./assets
-
+RUN mix phx.digest
 COPY . .
+
 
 CMD ["mix", "phx.server"]
 
