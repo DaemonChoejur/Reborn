@@ -3,6 +3,10 @@ FROM bitwalker/alpine-elixir-phoenix:latest
 RUN mkdir /app
 WORKDIR /app
 
+ARG MIX_ENV=prod
+RUN echo ${MIX_ENV}
+ENV MIX_ENV=$MIX_ENV
+
 COPY mix.exs mix.lock ./
 RUN mix do deps.get, deps.compile
 
