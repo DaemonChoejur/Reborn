@@ -12,8 +12,9 @@ Features:
 
 # Run:
 
-docker-compose up --build
-docker-compose run web mix ecto.create
+    docker-compose up --build
+
+    docker-compose run web mix ecto.create
 
    <!-- 
    To start your Phoenix server:
