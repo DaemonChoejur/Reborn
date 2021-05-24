@@ -12,6 +12,7 @@ Features:
    - added counter to "/welcome" route
 
 Root page
+
 "/home" -> LiveDashboard. Kept it default without any customization.
 "/welcome" -> route for user to logout, settings, etc.
 
