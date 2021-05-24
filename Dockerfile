@@ -1,22 +1,51 @@
 FROM bitwalker/alpine-elixir-phoenix:latest
 
-RUN mkdir /app
-WORKDIR /app
+# Set exposed ports
+EXPOSE 5000
+ENV PORT=5000 MIX_ENV=prod
 
-ARG MIX_ENV=prod
-RUN echo ${MIX_ENV}
-ENV MIX_ENV=$MIX_ENV
-
-COPY mix.exs mix.lock ./
+# Cache elixir deps
+ADD mix.exs mix.lock ./
 RUN mix do deps.get, deps.compile
 
-COPY assets/package.json assets/package-lock.json ./assets/
-RUN npm install --prefix ./assets
-RUN mix phx.digest
-COPY . .
+# Same with npm deps
+ADD assets/package.json assets/
+RUN cd assets && \
+    npm install
 
+ADD . .
+
+# Run frontend build, compile, and digest assets
+RUN cd assets/ && \
+    npm run deploy && \
+    cd - && \
+    mix do compile, phx.digest
+
+USER default
 
 CMD ["mix", "phx.server"]
+
+
+
+# FROM bitwalker/alpine-elixir-phoenix:latest
+
+# RUN mkdir /app
+# WORKDIR /app
+
+# ARG MIX_ENV=prod
+# RUN echo ${MIX_ENV}
+# ENV MIX_ENV=$MIX_ENV
+
+# COPY mix.exs mix.lock ./
+# RUN mix do deps.get, deps.compile
+
+# COPY assets/package.json assets/package-lock.json ./assets/
+# RUN npm install --prefix ./assets
+# RUN mix phx.digest
+# COPY . .
+
+
+# CMD ["mix", "phx.server"]
 
 
 # # FROM bitwalker/alpine-elixir-phoenix:latest
