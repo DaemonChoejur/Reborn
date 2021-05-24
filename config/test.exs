@@ -13,12 +13,12 @@ config :bcrypt_elixir, :log_rounds, 1
 config(
   :reborn,
   Reborn.Repo,
-  # username: "postgres",
-  # password: "postgres",
-  # database: "reborn_test#{System.get_env("MIX_TEST_PARTITION")}",
-  # hostname: "localhost",
+  username: "postgres",
+  password: "postgres",
+  database: "reborn_test#{System.get_env("MIX_TEST_PARTITION")}",
+  hostname: "localhost",
   # url: String.replace(database_url, "?", "dev"),
-  url: "#{System.get_env("DATABASE_URL")}" |> String.replace("?", "test"),
+  # url: "#{System.get_env("DATABASE_URL")}" |> String.replace("?", "test"),
   pool: Ecto.Adapters.SQL.Sandbox
 )
 
