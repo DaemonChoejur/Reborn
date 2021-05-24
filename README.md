@@ -8,7 +8,12 @@ Features:
 2. Using Bamboo for sending emails [Password-Reset Email, Email Confirmation]
    - Email local development and testing https://hexdocs.pm/bamboo/Bamboo.SentEmailViewerPlug.html
 3. LiveView Dashboard
-   - Metrics include a count to check how many times LiveView Dashboard page has been hit.
+   - Metrics include a count to check how many times LiveView Dashboard page has been hit. (Not Completed)
+   - added counter to "/welcome" route
+
+Root page
+"/home" -> LiveDashboard. Kept it default without any customization.
+"/welcome" -> route for user to logout, settings, etc.
 
 # Run:
 
