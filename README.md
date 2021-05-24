@@ -16,6 +16,10 @@ Features:
 
     docker-compose run web mix ecto.create
 
+In production - migrations
+
+    heroku run:detached "POOL_SIZE=2 mix ecto.migrate"
+
    <!-- 
    To start your Phoenix server:
 
