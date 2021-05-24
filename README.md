@@ -11,10 +11,10 @@ Features:
    - Metrics include a count to check how many times LiveView Dashboard page has been hit. (Not Completed)
    - added counter to "/welcome" route
 
-Root page
+Routes
 
-"/home" -> LiveDashboard. Kept it default without any customization.
-"/welcome" -> route for user to logout, settings, etc.
+- "/home" -> LiveDashboard. Kept it default without any customization.
+- "/welcome" -> route for user to logout, settings, etc.
 
 # Run:
 
